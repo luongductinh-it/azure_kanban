@@ -1,3 +1,7 @@
+import 'package:azure_kanban/constants/app_colors.dart';
+import 'package:azure_kanban/constants/app_images.dart';
+import 'package:azure_kanban/routes/route_names.dart';
+import 'package:azure_kanban/widgets/app_button.dart';
 import 'package:flutter/material.dart';
 
 class OnBoardingScreen extends StatelessWidget {
@@ -17,10 +21,10 @@ class OnBoardingScreen extends StatelessWidget {
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: [
-                    Color(0xff0052CC).withValues(alpha: 0.2),
-                    Color(0xff0052CC).withValues(alpha: 0.1),
-                    Color(0xff006477).withValues(alpha: 0.1),
-                    Color(0xffffffff).withValues(alpha: 0.02),
+                    AppColor.primaryColor.withValues(alpha: 0.2),
+                    AppColor.primaryColor.withValues(alpha: 0.1),
+                    AppColor.green77Color.withValues(alpha: 0.1),
+                    AppColor.whiteColor.withValues(alpha: 0.02),
                   ],
                 ),
               ),
@@ -36,7 +40,7 @@ class OnBoardingScreen extends StatelessWidget {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(24),
                       child: Image.asset(
-                        'assets/images/boarding.jpg',
+                        AppImages.onBroading,
                         width: double.infinity,
                         fit: BoxFit.cover,
                       ),
@@ -58,7 +62,7 @@ class OnBoardingScreen extends StatelessWidget {
                         width: 40,
                         height: 40,
                         decoration: BoxDecoration(
-                          color: Color(0xff003D98),
+                          color: AppColor.primaryColor,
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: const Icon(
@@ -72,7 +76,7 @@ class OnBoardingScreen extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
-                          color: Color(0xff003D9B),
+                          color: AppColor.primaryColor,
                         ),
                       ),
                     ],
@@ -92,13 +96,16 @@ class OnBoardingScreen extends StatelessWidget {
                     style: TextStyle(fontSize: 18),
                   ),
                   const SizedBox(height: 40),
-                  _buildButon('Get Started', () {}, hasIcon: true),
+                  AppButton(title: 'Get Started', onPressed: () {}),
                   const SizedBox(height: 16),
-                  _buildButon(
-                    'Login',
-                    () {},
-                    color: Color(0xffE1E2E4),
-                    textColor: Color(0xff333333),
+                  AppButton(
+                    title: 'Login',
+                    onPressed: () {
+                      Navigator.pushNamed(context, RouteNames.login);
+                    },
+                    color: AppColor.greyColor,
+                    textColor: AppColor.defaultTextColor,
+                    hasIcon: false,
                   ),
                 ],
               ),
@@ -108,43 +115,4 @@ class OnBoardingScreen extends StatelessWidget {
       ),
     );
   }
-}
-
-Widget _buildButon(
-  String text,
-  VoidCallback onPressed, {
-  Color? color,
-  bool hasIcon = false,
-  Color? textColor,
-}) {
-  return GestureDetector(
-    onTap: onPressed,
-    behavior: HitTestBehavior.translucent,
-    child: Container(
-      height: 60,
-      width: double.infinity,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(60),
-        color: color,
-        gradient: color == null
-            ? LinearGradient(colors: [Color(0xff003D9B), Color(0xff0052CC)])
-            : null,
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Center(
-            child: Text(
-              text,
-              style: TextStyle(fontSize: 18, color: textColor ?? Colors.white),
-            ),
-          ),
-          if (hasIcon) ...[
-            const SizedBox(width: 8),
-            Icon(Icons.arrow_forward, color: Colors.white),
-          ],
-        ],
-      ),
-    ),
-  );
 }

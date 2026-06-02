@@ -1,4 +1,6 @@
 import 'package:azure_kanban/features/onboarding/onboarding_screen.dart';
+import 'package:azure_kanban/routes/app_route.dart';
+import 'package:azure_kanban/routes/route_names.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,11 +15,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: .fromSeed(seedColor: Colors.deepPurple),
-      ),
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
       home: const OnBoardingScreen(),
+      onGenerateRoute: AppRoute.generateRoute,
+      initialRoute: RouteNames.onBoarding,
     );
   }
 }
-
