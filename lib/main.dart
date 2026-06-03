@@ -2,8 +2,12 @@ import 'package:azure_kanban/features/onboarding/onboarding_screen.dart';
 import 'package:azure_kanban/routes/app_route.dart';
 import 'package:azure_kanban/routes/route_names.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
 }
 

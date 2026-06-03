@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "774591631182",
+    "project_id": "azure-kanban-d6782",
+    "storage_bucket": "azure-kanban-d6782.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:774591631182:android:e813a0b16c98299165981f",
+        "android_client_info": {
+          "package_name": "com.example.azure_kanban"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC160VkkStpt3CpqIoUsajiMX8joODc3Y0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
