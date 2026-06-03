@@ -8,8 +8,8 @@ import 'package:azure_kanban/widgets/app_text_form_field.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+class SignUpScreen extends StatelessWidget {
+  const SignUpScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,12 +29,24 @@ class LoginScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Text(
-                  'Welcome Back',
-                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                  'Join Azure Kanban',
+                  style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 8),
-                Text('Please enter your credentials to access your workspace'),
+                Text('Professional workflow management start here.'),
                 const SizedBox(height: 40),
+
+                Text(
+                  'FULL NAME',
+                  style: TextStyle(
+                    fontSize: 11,
+                    fontWeight: FontWeight.bold,
+                    color: AppColor.black43,
+                  ),
+                ),
+                const SizedBox(height: 6),
+                AppTextFormField(hintText: 'John Dan'),
+                const SizedBox(height: 20),
                 Text(
                   'EMAIL ADDRESS',
                   style: TextStyle(
@@ -45,57 +57,20 @@ class LoginScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 6),
                 AppTextFormField(hintText: 'name@company.com'),
-                const SizedBox(height: 6),
+                const SizedBox(height: 20),
 
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'PASSWORD',
-                      style: TextStyle(
-                        fontSize: 11,
-                        fontWeight: FontWeight.bold,
-                        color: AppColor.black43,
-                      ),
-                    ),
-                    TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        'Forgot Password?',
-                        style: TextStyle(
-                          color: AppColor.primaryColor,
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ],
+                Text(
+                  'PASSWORD',
+                  style: TextStyle(
+                    fontSize: 11,
+                    fontWeight: FontWeight.bold,
+                    color: AppColor.black43,
+                  ),
                 ),
                 const SizedBox(height: 6),
                 AppTextFormField(hintText: '*******', isPassWord: true),
-                const SizedBox(height: 24),
-                Row(
-                  children: [
-                    SizedBox(
-                      height: 16,
-                      width: 16,
-                      child: Checkbox(
-                        value: false,
-                        onChanged: (value) {},
-                        activeColor: AppColor.primaryColor,
-                        checkColor: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadiusGeometry.circular(4),
-                        ),
-                        side: BorderSide(color: AppColor.greyC3),
-                      ),
-                    ),
-                    SizedBox(width: 8),
-                    Text('Stay signed in for 30 days'),
-                  ],
-                ),
-                const SizedBox(height: 24),
-                AppButton(title: 'Sign In', hasIcon: false),
+                const SizedBox(height: 20),
+                AppButton(title: 'Sign Up', hasIcon: false),
                 const SizedBox(height: 32),
                 Row(
                   children: [
@@ -135,18 +110,18 @@ class LoginScreen extends StatelessWidget {
                 RichText(
                   textAlign: TextAlign.center,
                   text: TextSpan(
-                    text: "Don't have an account? ",
+                    text: "Already have an account? ",
                     style: TextStyle(color: AppColor.black43),
                     children: [
                       TextSpan(
-                        text: "Create an Account",
+                        text: "Log in",
                         style: TextStyle(
                           color: AppColor.primaryColor,
                           fontWeight: FontWeight.bold,
                         ),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            Navigator.pushNamed(context, RouteNames.signUp);
+                            Navigator.pushNamed(context, RouteNames.login);
                           },
                       ),
                     ],
@@ -164,5 +139,3 @@ class LoginScreen extends StatelessWidget {
     );
   }
 }
-
-
