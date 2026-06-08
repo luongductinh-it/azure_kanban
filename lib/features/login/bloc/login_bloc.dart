@@ -1,0 +1,23 @@
+import 'package:azure_kanban/features/login/bloc/login_event.dart';
+import 'package:azure_kanban/features/login/bloc/login_state.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+class LoginBloc extends Bloc<LoginEvent, LoginState> {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  LoginBloc() : super(LoginInitial()) {
+    on<LoginRequested>((event, emit) async {
+      emit(LoginLoading());
+      try {
+        await _auth.signInWithEmailAndPassword(
+          email: event.email,
+          password: event.password,
+        );
+        emit(LoginSuccess());
+      } catch (e) {
+        emit(LoginFailure(e.toString()));
+      }
+    });
+  }
+}

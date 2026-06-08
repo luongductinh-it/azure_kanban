@@ -1,3 +1,4 @@
+import 'package:azure_kanban/features/login/bloc/login_bloc.dart';
 import 'package:azure_kanban/features/login/login_screen.dart';
 import 'package:azure_kanban/features/onboarding/onboarding_screen.dart';
 import 'package:azure_kanban/features/sign_up/bloc/sign_up_bloc.dart';
@@ -11,10 +12,17 @@ class AppRoute {
     switch (settings.name) {
       case RouteNames.home:
       // return MaterialPageRoute(builder: (_) => const HomeScreen());
-      case RouteNames.login:
-        return MaterialPageRoute(builder: (_) => const LoginScreen());
       case RouteNames.onBoarding:
         return MaterialPageRoute(builder: (_) => const OnBoardingScreen());
+
+      case RouteNames.login:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => LoginBloc(),
+            child: LoginScreen(),
+          ),
+        );
+
       case RouteNames.signUp:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
@@ -22,6 +30,9 @@ class AppRoute {
             child: SignUpScreen(),
           ),
         );
+
+      
+
 
       default:
         return MaterialPageRoute(
