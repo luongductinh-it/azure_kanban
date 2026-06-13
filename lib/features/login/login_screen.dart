@@ -181,6 +181,11 @@ class _LoginScreenState extends State<LoginScreen> {
                           child: AppSocialButton(
                             label: 'Google',
                             icon: AppImages.icGoogle,
+                            onTap: () {
+                              context.read<LoginBloc>().add(
+                                LoginGoogleRequested(),
+                              );
+                            },
                           ),
                         ),
                         const SizedBox(width: 16),

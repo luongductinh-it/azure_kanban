@@ -6,3 +6,5 @@ class LoginRequested extends LoginEvent {
 
   LoginRequested(this.email, this.password);
 }
+
+class LoginGoogleRequested extends LoginEvent{}

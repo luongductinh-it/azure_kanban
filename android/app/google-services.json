@@ -12,7 +12,20 @@
           "package_name": "com.example.azure_kanban"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "774591631182-lu43vs65lor30khtlij18qs4rhaq4jbs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.azure_kanban",
+            "certificate_hash": "d740b7c1b98beb97171cbc9ec65fe216fb8ef686"
+          }
+        },
+        {
+          "client_id": "774591631182-i3qfvtksj81okvj1suj8rge74oglplhr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyC160VkkStpt3CpqIoUsajiMX8joODc3Y0"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "774591631182-i3qfvtksj81okvj1suj8rge74oglplhr.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "774591631182-0dd9vn403q49g19q21e81o20pck60j2f.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.azureKanban"
+              }
+            }
+          ]
         }
       }
     }
