@@ -1,5 +1,7 @@
 import 'package:azure_kanban/constants/app_colors.dart';
 import 'package:azure_kanban/constants/app_images.dart';
+import 'package:azure_kanban/features/app/bloc/app_bloc.dart';
+import 'package:azure_kanban/features/app/bloc/app_event.dart';
 import 'package:azure_kanban/features/login/bloc/login_bloc.dart';
 import 'package:azure_kanban/features/login/bloc/login_event.dart';
 import 'package:azure_kanban/features/login/bloc/login_state.dart';
@@ -38,6 +40,12 @@ class _LoginScreenState extends State<LoginScreen> {
           if (state is LoginSuccess) {
             Utils.hideLoading(context);
             Utils.showSnackBarSuccess(context, "Login Success");
+            context.read<AppBloc>().add(AppUserChanged(state.user));
+            Navigator.pushNamedAndRemoveUntil(
+              context,
+              RouteNames.home,
+              (route) => false,
+            );
           }
           if (state is LoginFailure) {
             Utils.hideLoading(context);
@@ -212,7 +220,10 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {
-                                Navigator.pushNamed(context, RouteNames.signUp);
+                                Navigator.popAndPushNamed(
+                                  context,
+                                  RouteNames.signUp,
+                                );
                               },
                           ),
                         ],

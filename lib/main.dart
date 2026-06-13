@@ -1,8 +1,12 @@
+import 'package:azure_kanban/features/app/bloc/app_bloc.dart';
+import 'package:azure_kanban/features/app/bloc/app_event.dart';
+import 'package:azure_kanban/features/app/bloc/app_state.dart';
+import 'package:azure_kanban/features/home/home_screen.dart';
 import 'package:azure_kanban/features/onboarding/onboarding_screen.dart';
 import 'package:azure_kanban/routes/app_route.dart';
-import 'package:azure_kanban/routes/route_names.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -17,13 +21,27 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
-      home: const OnBoardingScreen(),
-      onGenerateRoute: AppRoute.generateRoute,
-      initialRoute: RouteNames.onBoarding,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => AppBloc()..add(AppStarted())),
+      ],
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
+        home: BlocBuilder<AppBloc,AppState>(
+          builder: (context, state) {
+            if (state is Authenticated) {
+              return HomeScreen();
+            }
+            if (state is Unauthenticated) {
+              return OnBoardingScreen();
+            }
+            return Scaffold(body: Center(child: CircularProgressIndicator()));
+          },
+        ),
+        onGenerateRoute: AppRoute.generateRoute,
+      ),
     );
   }
 }

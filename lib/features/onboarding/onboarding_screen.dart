@@ -96,12 +96,14 @@ class OnBoardingScreen extends StatelessWidget {
                     style: TextStyle(fontSize: 18),
                   ),
                   const SizedBox(height: 40),
-                  AppButton(title: 'Get Started', onPressed: () {}),
+                  AppButton(title: 'Get Started', onPressed: () {
+                    Navigator.popAndPushNamed(context, RouteNames.signUp);
+                  }),
                   const SizedBox(height: 16),
                   AppButton(
                     title: 'Login',
                     onPressed: () {
-                      Navigator.pushNamed(context, RouteNames.login);
+                      Navigator.popAndPushNamed(context, RouteNames.login);
                     },
                     color: AppColor.greyColor,
                     textColor: AppColor.defaultTextColor,

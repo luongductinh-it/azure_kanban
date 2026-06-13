@@ -19,11 +19,14 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   ) async {
     emit(LoginLoading());
     try {
-      await _auth.signInWithEmailAndPassword(
+      final userCredential = await _auth.signInWithEmailAndPassword(
         email: event.email,
         password: event.password,
       );
-      emit(LoginSuccess());
+      if (userCredential.user != null) {
+        emit(LoginSuccess(userCredential.user!));
+      }
+
     } catch (e) {
       emit(LoginFailure(e.toString()));
     }
@@ -44,8 +47,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         idToken: googleAuth.idToken,
       );
 
-      final user = FirebaseAuth.instance.signInWithCredential(credential);
-      emit(LoginSuccess());
+      final user = await FirebaseAuth.instance.signInWithCredential(credential);
+      emit(LoginSuccess(user.user!));
     } catch (e) {
       emit(LoginFailure(e.toString()));
     }
