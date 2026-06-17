@@ -2,19 +2,22 @@ import 'package:azure_kanban/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class AppButton extends StatelessWidget {
-  const AppButton({
+  const AppButton(
+   {
     super.key,
     required this.title,
     this.textColor,
     this.color,
     this.onPressed,
     this.hasIcon = true,
+    this.leftIcon, 
   });
   final String title;
   final Color? textColor;
   final Color? color;
   final VoidCallback? onPressed;
   final bool hasIcon;
+  final Widget? leftIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -29,13 +32,14 @@ class AppButton extends StatelessWidget {
           color: color,
           gradient: color == null
               ? LinearGradient(
-                  colors: [ AppColor.primaryColor,AppColor.blueCCColor],
+                  colors: [AppColor.primaryColor, AppColor.blueCCColor],
                 )
               : null,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            if (leftIcon != null) ...[leftIcon!, const SizedBox(height: 8)],
             Center(
               child: Text(
                 title,
