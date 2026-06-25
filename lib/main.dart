@@ -2,6 +2,8 @@ import 'package:azure_kanban/features/app/bloc/app_bloc.dart';
 import 'package:azure_kanban/features/app/bloc/app_event.dart';
 import 'package:azure_kanban/features/app/bloc/app_state.dart';
 import 'package:azure_kanban/features/home/home_screen.dart';
+import 'package:azure_kanban/features/navigation/bloc/navigation_bloc.dart';
+import 'package:azure_kanban/features/navigation/navigation_screen.dart';
 import 'package:azure_kanban/features/onboarding/onboarding_screen.dart';
 import 'package:azure_kanban/routes/app_route.dart';
 import 'package:flutter/material.dart';
@@ -29,10 +31,13 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
-        home: BlocBuilder<AppBloc,AppState>(
+        home: BlocBuilder<AppBloc, AppState>(
           builder: (context, state) {
             if (state is Authenticated) {
-              return HomeScreen();
+              return BlocProvider(
+                create: (context) => NavigationBloc(),
+                child: NavigationScreen(),
+              );
             }
             if (state is Unauthenticated) {
               return OnBoardingScreen();
