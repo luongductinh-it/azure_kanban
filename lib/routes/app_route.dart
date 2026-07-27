@@ -1,3 +1,4 @@
+import 'package:azure_kanban/features/create_board/bloc/create_board_bloc.dart';
 import 'package:azure_kanban/features/create_board/create_board_screen.dart';
 import 'package:azure_kanban/features/home/home_screen.dart';
 import 'package:azure_kanban/features/login/bloc/login_bloc.dart';
@@ -16,8 +17,14 @@ class AppRoute {
         return MaterialPageRoute(builder: (_) => const HomeScreen());
       case RouteNames.onBoarding:
         return MaterialPageRoute(builder: (_) => const OnBoardingScreen());
+
       case RouteNames.createBoard:
-        return MaterialPageRoute(builder: (context) => CreateBoardScreen());
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => CreateBoardBloc(),
+            child: CreateBoardScreen(),
+          ),
+        );
 
       case RouteNames.login:
         return MaterialPageRoute(

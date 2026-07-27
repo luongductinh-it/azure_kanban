@@ -8,12 +8,14 @@ class AppTextFormField extends StatelessWidget {
     this.isPassWord,
     this.hintText,
     this.validator,
+    this.onChanged,
   });
 
   final TextEditingController? controller;
   final String? Function(String?)? validator;
   final bool? isPassWord;
   final String? hintText;
+  final Function(String)? onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +23,7 @@ class AppTextFormField extends StatelessWidget {
       obscureText: isPassWord ?? false,
       controller: controller,
       validator: validator,
+      onChanged: onChanged,
       decoration: InputDecoration(
         hintText: hintText,
         filled: true,

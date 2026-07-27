@@ -1,7 +1,6 @@
 import 'package:azure_kanban/features/app/bloc/app_bloc.dart';
 import 'package:azure_kanban/features/app/bloc/app_event.dart';
 import 'package:azure_kanban/features/app/bloc/app_state.dart';
-import 'package:azure_kanban/features/home/home_screen.dart';
 import 'package:azure_kanban/features/navigation/bloc/navigation_bloc.dart';
 import 'package:azure_kanban/features/navigation/navigation_screen.dart';
 import 'package:azure_kanban/features/onboarding/onboarding_screen.dart';
