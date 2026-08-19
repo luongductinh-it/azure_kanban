@@ -2,15 +2,15 @@ import 'package:azure_kanban/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class AppButton extends StatelessWidget {
-  const AppButton(
-   {
+  const AppButton({
     super.key,
     required this.title,
     this.textColor,
     this.color,
     this.onPressed,
     this.hasIcon = true,
-    this.leftIcon, 
+    this.leftIcon,
+    this.titleStyle,
   });
   final String title;
   final Color? textColor;
@@ -18,6 +18,7 @@ class AppButton extends StatelessWidget {
   final VoidCallback? onPressed;
   final bool hasIcon;
   final Widget? leftIcon;
+  final TextStyle? titleStyle;
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +44,7 @@ class AppButton extends StatelessWidget {
             Center(
               child: Text(
                 title,
-                style: TextStyle(
+                style: titleStyle ?? TextStyle(
                   fontSize: 18,
                   color: textColor ?? Colors.white,
                 ),

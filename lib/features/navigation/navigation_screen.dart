@@ -1,3 +1,4 @@
+import 'package:azure_kanban/boards/boards_screen.dart';
 import 'package:azure_kanban/constants/app_colors.dart';
 import 'package:azure_kanban/features/home/home_screen.dart';
 import 'package:azure_kanban/features/navigation/bloc/navigation_bloc.dart';
@@ -11,7 +12,7 @@ class NavigationScreen extends StatelessWidget {
 
   final List<Widget> _screen = const [
     HomeScreen(),
-    Placeholder(),
+    BoardsScreen(),
     Placeholder(),
     Placeholder(),
   ];
@@ -49,8 +50,8 @@ class NavigationScreen extends StatelessWidget {
                   },
                 ),
                 _navigationItem(
-                  Icons.search,
-                  'Search',
+                  Icons.dashboard,
+                  'Boards',
                   state is NavigationUpdated && state.selectedIndex == 1,
                   () {
                     context.read<NavigationBloc>().add(

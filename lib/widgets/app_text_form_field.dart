@@ -9,6 +9,9 @@ class AppTextFormField extends StatelessWidget {
     this.hintText,
     this.validator,
     this.onChanged,
+    this.prefixIcon,
+    this.suffixIcon,
+    this.inputBorder,
   });
 
   final TextEditingController? controller;
@@ -16,6 +19,9 @@ class AppTextFormField extends StatelessWidget {
   final bool? isPassWord;
   final String? hintText;
   final Function(String)? onChanged;
+  final Widget? prefixIcon;
+  final Widget? suffixIcon;
+  final InputBorder? inputBorder;
 
   @override
   Widget build(BuildContext context) {
@@ -28,11 +34,15 @@ class AppTextFormField extends StatelessWidget {
         hintText: hintText,
         filled: true,
         fillColor: AppColor.greyE7,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.vertical(top: Radius.circular(8)),
-          borderSide: BorderSide.none,
-        ),
+        prefixIcon: prefixIcon,
+        suffixIcon: suffixIcon,
+        border:
+            inputBorder ??
+            OutlineInputBorder(
+              borderRadius: BorderRadius.vertical(top: Radius.circular(8)),
+              borderSide: BorderSide.none,
+            ),
       ),
     );
-  }
+  } 
 }
