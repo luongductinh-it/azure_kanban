@@ -1,4 +1,5 @@
 import 'package:azure_kanban/constants/app_colors.dart';
+import 'package:azure_kanban/models/board_model.dart';
 import 'package:azure_kanban/widgets/app_button.dart';
 import 'package:azure_kanban/widgets/app_text_form_field.dart';
 import 'package:azure_kanban/widgets/board_card.dart';
@@ -104,7 +105,18 @@ class BoardsScreen extends StatelessWidget {
   Widget _listBoards() {
     return Expanded(
       child: ListView.separated(
-        itemBuilder: (_, index) => BoardCard(),
+        itemBuilder: (_, index) => BoardCard(
+          board: BoardModel(
+            id: '12',
+            name: 'Mobile App Redessign',
+            decription: 'Internal team coordination...',
+            backgroundColorValue: AppColor.primaryColor.value,
+            isPrivate: false,
+            createAt: DateTime.now(),
+            ownerId: "",
+            users: ["1", "2", "3", "4", "5"],
+          ),
+        ),
         separatorBuilder: (_, index) => SizedBox(height: 24),
         itemCount: 3,
       ),
