@@ -1,3 +1,5 @@
+import 'package:azure_kanban/boards/bloc/boards_bloc.dart';
+import 'package:azure_kanban/boards/bloc/boards_event.dart';
 import 'package:azure_kanban/features/app/bloc/app_bloc.dart';
 import 'package:azure_kanban/features/app/bloc/app_event.dart';
 import 'package:azure_kanban/features/app/bloc/app_state.dart';
@@ -5,6 +7,7 @@ import 'package:azure_kanban/features/navigation/bloc/navigation_bloc.dart';
 import 'package:azure_kanban/features/navigation/navigation_screen.dart';
 import 'package:azure_kanban/features/onboarding/onboarding_screen.dart';
 import 'package:azure_kanban/routes/app_route.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -33,8 +36,16 @@ class MyApp extends StatelessWidget {
         home: BlocBuilder<AppBloc, AppState>(
           builder: (context, state) {
             if (state is Authenticated) {
-              return BlocProvider(
-                create: (context) => NavigationBloc(),
+              final user = FirebaseAuth.instance;
+              return MultiBlocProvider(
+                providers: [
+                  BlocProvider(create: (context) => NavigationBloc()),
+                  BlocProvider(
+                    create: (context) => BoardsBloc()
+                      ..add(LoadBoards(userId: user.currentUser?.uid ?? "")),
+                  ),
+                ],
+
                 child: NavigationScreen(),
               );
             }

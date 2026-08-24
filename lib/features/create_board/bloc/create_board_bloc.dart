@@ -18,11 +18,11 @@ class CreateBoardBloc extends Bloc<CreateBoardEvent, CreateBoardState> {
   ) async {
     try {
       emit(CreateBoardLoading());
-      final docRef = _firestore.collection("board").doc();
+      final docRef = _firestore.collection("boards").doc();
       final board = BoardModel(
         id: docRef.id,
         name: event.name,
-        decription: event.decription,
+        decriptions: event.decription,
         backgroundColorValue: event.backgroundColor.value,
         isPrivate: event.isPrivate,
         createAt: DateTime.now(),

@@ -48,7 +48,7 @@ class BoardCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  board?.decription ?? "",
+                  board?.decriptions ?? "",
                   style: TextStyle(color: AppColor.black43),
                 ),
                 const SizedBox(height: 8),

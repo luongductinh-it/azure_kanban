@@ -1,7 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class BoardModel {
   final String id;
   final String name;
-  final String decription;
+  final String decriptions;
   final int backgroundColorValue;
   final bool isPrivate;
   final DateTime createAt;
@@ -10,7 +12,7 @@ class BoardModel {
   BoardModel({
     required this.id,
     required this.name,
-    required this.decription,
+    required this.decriptions,
     required this.backgroundColorValue,
     required this.isPrivate,
     required this.createAt,
@@ -22,12 +24,25 @@ class BoardModel {
     return {
       'id': id,
       'name': name,
-      'decription': decription,
+      'decriptions': decriptions,
       'backgroundColorValue': backgroundColorValue,
       'isPrivate': isPrivate,
       'createAt': createAt,
       'ownerId': ownerId,
       'users': users,
     };
+  }
+
+  factory BoardModel.fromMap(Map<String, dynamic> map, String documentId) {
+    return BoardModel(
+      id: map['id'] ?? '',
+      name:  map['name'] ?? '' ,
+      decriptions: map['decriptions'] ?? '',
+      backgroundColorValue: map['backgroundColorValue'] ?? 0xFFFFFFFF,
+      isPrivate: map['isPrivate'] ?? false,
+      createAt: (map['createAt'] as Timestamp).toDate(),
+      ownerId: map['ownerId'] ?? '' ,
+      users: List<String>.from(map['users'] ?? []),
+    );
   }
 }

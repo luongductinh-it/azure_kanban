@@ -80,7 +80,7 @@ class _CreateBoardScreenState extends State<CreateBoardScreen> {
           if (state is CreateBoardSuccess) {
             Utils.hideLoading(context);
             Utils.showSnackBarSuccess(context, "Create board successfully");
-            _initialValue();
+            Navigator.pop(context, true);
           }
           if (state is CreateBoardFailure) {
             Utils.hideLoading(context);

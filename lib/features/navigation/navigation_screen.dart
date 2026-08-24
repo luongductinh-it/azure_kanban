@@ -1,9 +1,12 @@
+import 'package:azure_kanban/boards/bloc/boards_bloc.dart';
+import 'package:azure_kanban/boards/bloc/boards_event.dart';
 import 'package:azure_kanban/boards/boards_screen.dart';
 import 'package:azure_kanban/constants/app_colors.dart';
 import 'package:azure_kanban/features/home/home_screen.dart';
 import 'package:azure_kanban/features/navigation/bloc/navigation_bloc.dart';
 import 'package:azure_kanban/features/navigation/bloc/navigation_event.dart';
 import 'package:azure_kanban/features/navigation/bloc/navigation_state.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -56,6 +59,11 @@ class NavigationScreen extends StatelessWidget {
                   () {
                     context.read<NavigationBloc>().add(
                       NavigationItemSelected(1),
+                    );
+                    context.read<BoardsBloc>().add(
+                      LoadBoards(
+                        userId: FirebaseAuth.instance.currentUser?.uid ?? "",
+                      ),
                     );
                   },
                 ),
